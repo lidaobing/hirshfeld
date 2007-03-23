@@ -28,7 +28,7 @@ static std::vector<double> total_SCF_density;  //Total SCF Density
 static bool hasspshell();
 
 template<class T>
-static void read_vector(istream& is,
+static bool read_vector(istream& is,
                            vector<T>& vi,
                            const string& keyword) {
   vi.clear();
@@ -37,12 +37,12 @@ static void read_vector(istream& is,
     getline(is, tmpstr);
     if(tmpstr.find(keyword) != string::npos) break;
   }
-  if(is.eof()) abort();
+  if(is.eof()) return false;
   
   istringstream iss(tmpstr.substr(49));
   int num;
   iss >> num;
-  if(not iss) abort();
+  if(not iss) return false;
   
   for(int i = 0; i < num; i++) {
     T tmpint;
@@ -51,9 +51,13 @@ static void read_vector(istream& is,
   }
 }
 
-Molecule::Molecule() {}
+Molecule::Molecule()
+  : m_dirty(false)
+{}
 
-Molecule::Molecule(istream& is) {
+Molecule::Molecule(istream& is) 
+  : m_dirty(false)
+{
   read(is);
 }
 
@@ -75,24 +79,34 @@ void Molecule::read(istream& is) {
   string tmpstr;
   getline(is, tmpstr);
   getline(is, tmpstr);
-  if(tmpstr.size() < 11) abort();
+  if(tmpstr.size() < 11) {
+    m_dirty = true;
+    return;
+  }
   if('R' == tmpstr[10]) {
     closeshell = true;
   } else if('U' == tmpstr[10]) {
     closeshell = false;
   } else {
-    abort();
+    m_dirty = true;
+    return;
   }
 
-  read_vector<int>(is, atoms, "Atomic numbers");
-  read_vector<double>(is, coords,"Current cartesian coordinates"); // in fchk file, units is a.u.
-  read_vector<int>(is, shell_type, "Shell types");
-  read_vector<int>(is, npps, "Number of primitives per shell");
-  read_vector<int>(is, shell_map, "Shell to atom map");
-  read_vector<double>(is, pri_exp, "Primitive exponents");
-  read_vector<double>(is, con_coe, "Contraction coefficients");
-  if(hasspshell()) read_vector<double>(is, p_con_coe, "P(S=P) Contraction coefficients");
-  read_vector<double>(is, total_SCF_density, "Total SCF Density");
+  if(read_vector<int>(is, atoms, "Atomic numbers")
+     and read_vector<double>(is, coords,"Current cartesian coordinates") // in fchk file, units is a.u.
+     and read_vector<int>(is, shell_type, "Shell types")
+     and read_vector<int>(is, npps, "Number of primitives per shell")
+     and read_vector<int>(is, shell_map, "Shell to atom map")
+     and read_vector<double>(is, pri_exp, "Primitive exponents")
+     and read_vector<double>(is, con_coe, "Contraction coefficients")
+     and (hasspshell()
+          ? read_vector<double>(is, p_con_coe, "P(S=P) Contraction coefficients")
+          : 1)
+     and read_vector<double>(is, total_SCF_density, "Total SCF Density")) {
+  } else {
+    m_dirty = true;
+    return;
+  }
 
   check();
   init();

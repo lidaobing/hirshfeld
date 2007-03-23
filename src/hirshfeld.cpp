@@ -13,11 +13,16 @@
 using namespace chemistry;
 using namespace std;
 
-Hirshfeld::Hirshfeld(const char * filename)
+Hirshfeld::Hirshfeld(istream& is)
+  : m_dirty(false)
 {
-  ifstream ifs(filename);
-  mol.read(ifs);
-  ifs.close();
+  mol.read(is);
+
+  if(not mol) {
+    m_dirty = true;
+    return;
+  }
+
   Lebedev_Laikov_sphere(110, lebedev_x, lebedev_y, lebedev_z, lebedev_w);
   initatoms();
 }
@@ -30,6 +35,7 @@ Hirshfeld::~Hirshfeld() {
 }
 
 void Hirshfeld::run(ostream& os) {
+  if(m_dirty) return;
 	int atmnum = mol.atmnum();
 	os << "No.\tAtomic\telctron\t\tcharge" << endl;
 	for(int i = 0; i < atmnum; i++) {

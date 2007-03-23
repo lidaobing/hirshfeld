@@ -1,5 +1,7 @@
 2007-03-24  LI Daobing  <lidaobing@gmail.com>
 
+	* src/main.cpp (main): check format error of fchk file
+
 	* src/molecule.cpp: use istream instead of FILE*
 
 	* tests/HCN.fchk, tests/HCN.out: add a testcase

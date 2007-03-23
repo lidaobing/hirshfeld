@@ -17,6 +17,8 @@ namespace chemistry {
     explicit Molecule(std::istream& is);
     ~Molecule();
 
+    operator void*() const {return m_dirty?0:(void *)(1);}
+
     void read(std::istream& is);
     
     double density(double x, double y, double z) const;
@@ -25,10 +27,12 @@ namespace chemistry {
     int atmnum() const;
     const chemistry::Atom& atom(int idx) const;
   private:
+    bool m_dirty;
     bool closeshell;
     std::vector<chemistry::Atom> m_atoms;
     std::vector<chemistry::Contraction *> conts;
     std::vector<std::vector<double> > density_matrix;
+
     void check();
     void init();
     void initatoms();

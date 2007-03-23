@@ -15,13 +15,18 @@ class Hirshfeld{
   Hirshfeld(const Hirshfeld&);
   Hirshfeld& operator=(const Hirshfeld&);
 public:
-  explicit Hirshfeld(const char * fname);
+  explicit Hirshfeld(std::istream& is);
+
+  operator void*() const {return m_dirty?0:(void *)(1);}
+
   void run(std::ostream& os);
   ~Hirshfeld();
 private:
+  bool m_dirty;
   chemistry::Molecule mol;
   std::vector<chemistry::Atomdata *> atoms;
   int activeatom;
+
   double gauss_chebyshev_integrate(int n);
 //	double atomdensity(int n, double r) const;
   double lebedev_x[110];
