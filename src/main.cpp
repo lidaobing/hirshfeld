@@ -1,5 +1,3 @@
-// $Id: main.cpp 19 2007-01-09 16:35:00Z nichloas $
-
 #include <iostream>
 #include <fstream>
 #include "hirshfeld.hpp"
@@ -8,7 +6,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
   if(argc != 2 && argc != 3) {
-    cout << "Hirshfeld version " VERSION ", by Li Daobing <lidaobing@gmail.com>\n";
+    cout << "Hirshfeld version " VERSION ", by LI Daobing <lidaobing@gmail.com>\n";
     cout << "Usage: " << basename(argv[0]) << " fchkfile [outputfile]\n";
     exit(1);
   }
