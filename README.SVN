@@ -1,6 +1,0 @@
-If you download this package from SVN, you should install `autoconf' and
-`automake1.4' (or higher version) first and run `autoreconf -i'.
-
-If you want to make a standard release package, you can run
-`./configure && make dist'
-this file will not include in the release package.
