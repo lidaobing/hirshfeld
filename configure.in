@@ -1,0 +1,31 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.59)
+AC_INIT([hirshfeld],[0.2.1-svn],[lidaobing@gmail.com])
+AM_INIT_AUTOMAKE(hirshfeld, 0.2.1-svn)
+AM_MAINTAINER_MODE
+AM_CONFIG_HEADER(config.h)
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_CXX
+
+# Checks for libraries.
+AC_CHECK_LIB([m], [pow, sqrt], [], [AC_MSG_ERROR(libm not found)])
+
+# Checks for header files.
+AC_CHECK_HEADERS([libgen.h])
+AC_CHECK_HEADERS([string.h strings.h], break)
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+AC_CHECK_FUNCS([strstr], [], [AC_MSG_ERROR(strstr not found)])
+AC_CHECK_FUNCS([strrchr])
+AC_REPLACE_FUNCS([basename])
+
+AC_CONFIG_FILES([Makefile
+                 data/Makefile
+                 src/Makefile])
+AC_OUTPUT

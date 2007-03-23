@@ -1,0 +1,1 @@
+1. try use `gsl_cheb_calc_integ' to replace the cheb algorithm.
