@@ -20,14 +20,14 @@ int main(int argc, char* argv[]) {
     streambuf * oldcout = cout.rdbuf(out.rdbuf());
 
     Hirshfeld hir(argv[1]);
-    hir.run();
+    hir.run(cout);
     //	hir.test();
 
     cout.rdbuf(oldcout);
     out.close();
   } else {
     Hirshfeld hir(argv[1]);
-    hir.run();
+    hir.run(cout);
   }
 
 

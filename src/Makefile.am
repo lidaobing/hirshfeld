@@ -1,3 +1,4 @@
+AM_CXXFLAGS = -Wall -Wextra
 INCLUDES = -DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\"
 bin_PROGRAMS = hirshfeld
 

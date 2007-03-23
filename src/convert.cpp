@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <fstream>
 #include "molecule.hpp"
 #include "lebedev.hpp"
 #include "slater.hpp"
@@ -28,7 +29,14 @@ int main(int argc, char * argv[]) {
     cerr << "Usage: " << basename(argv[0]) << " *.fchk\n";
     exit(1);
   }
-  Molecule mol(argv[1]);
+  ifstream ifs(argv[1]);
+  if(not ifs) {
+    cerr << "can't open file: " << argv[1] << "\n";
+    exit(1);
+  }
+  Molecule mol(ifs);
+  ifs.close();
+  
   if(mol.atmnum() != 1) {
     cerr << "Only for atom's fchk file!" << endl;
     exit(1);

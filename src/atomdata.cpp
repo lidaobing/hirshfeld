@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
+#include <sstream>
 
 using namespace std;
 using namespace chemistry;
@@ -14,29 +15,21 @@ Atomdata::Atomdata() {
 Atomdata::Atomdata(int atomicnumber)
 	:m_atomicnumber(atomicnumber)
 {
-	char fname[100];
-	snprintf(fname, 100, PACKAGE_DATA_DIR "/%i.data", atomicnumber);
-	ifstream in(fname, ios::in);
-	if(!in) {
-		cerr << "Can't open file " << fname << endl;
-		exit(1);
-	}
-	for(int i = 0; i < 100; i++) {
-		double tmp1;
-		double tmp2;
-		in >> tmp1 >> tmp2;
-		m_r.push_back(tmp1);
-		m_density.push_back(tmp2);
-	}
-	m_rm = Slater_radius(atomicnumber);
-}
-
-Atomdata::Atomdata(const Atomdata& A)
-	: m_r(A.m_r),
-	  m_density(A.m_density),
-	  m_rm(A.m_rm),
-	  m_atomicnumber(A.m_atomicnumber)
-{
+  ostringstream fname;
+  fname << PACKAGE_DATA_DIR "/" << atomicnumber << ".data";
+  ifstream in(fname.str().c_str());
+  if(!in) {
+    cerr << "Can't open file " << fname << endl;
+    exit(1);
+  }
+  for(int i = 0; i < 100; i++) {
+    double tmp1;
+    double tmp2;
+    in >> tmp1 >> tmp2;
+    m_r.push_back(tmp1);
+    m_density.push_back(tmp2);
+  }
+  m_rm = Slater_radius(atomicnumber);
 }
 
 double Atomdata::rm() const {

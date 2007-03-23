@@ -1,5 +1,19 @@
 2007-03-24  LI Daobing  <lidaobing@gmail.com>
 
+	* src/molecule.cpp: use istream instead of FILE*
+
+	* tests/HCN.fchk, tests/HCN.out: add a testcase
+
+	* src/hirshfeld.hpp: make Hirshfeld noncopyable
+
+	* src/atomdata.hpp: remove copy constructor
+
+	* src/atomdata.cpp (Atomdata::Atomdata): use ostringstream instead
+	of snprintf
+
+	* src/hirshfeld.hpp, src/hirshfeld.cpp, src/main.cpp:
+	Hirshfeld::run need a argument "ostream&" 
+
 	* src/main.cpp (main): fix name of "LI Daobing"
 
 	* src/molecule.cpp: s/char*/const char*/

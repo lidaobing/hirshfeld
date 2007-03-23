@@ -7,7 +7,6 @@ class Atomdata {
 	public:
 		Atomdata();
 		Atomdata(int i);
-		Atomdata(const Atomdata& A);
 		double rm() const;
 		double density(double r) const;
 		int number() const;

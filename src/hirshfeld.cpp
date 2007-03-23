@@ -3,9 +3,9 @@
 #include "hirshfeld.hpp"
 #include <cstdio>
 #include <cmath>
-#include <iostream>
 #include <iomanip>
 #include <cassert>
+#include <fstream>
 #include "lebedev.hpp"
 #include "atomdata.hpp"
 #include "atom.hpp"
@@ -13,11 +13,13 @@
 using namespace chemistry;
 using namespace std;
 
-Hirshfeld::Hirshfeld(char * filename)
-	: mol(filename)
+Hirshfeld::Hirshfeld(const char * filename)
 {
-	Lebedev_Laikov_sphere(110, lebedev_x, lebedev_y, lebedev_z, lebedev_w);
-	initatoms();
+  ifstream ifs(filename);
+  mol.read(ifs);
+  ifs.close();
+  Lebedev_Laikov_sphere(110, lebedev_x, lebedev_y, lebedev_z, lebedev_w);
+  initatoms();
 }
 
 Hirshfeld::~Hirshfeld() {
@@ -27,18 +29,18 @@ Hirshfeld::~Hirshfeld() {
 	}
 }
 
-void Hirshfeld::run() {
+void Hirshfeld::run(ostream& os) {
 	int atmnum = mol.atmnum();
-	cout << "No.\tAtomic\telctron\t\tcharge" << endl;
+	os << "No.\tAtomic\telctron\t\tcharge" << endl;
 	for(int i = 0; i < atmnum; i++) {
 		activeatom = i;
 		double electron = gauss_chebyshev_integrate(30);
 		int atomicnumber = mol.atom(i).atomicnumber;
-		cout << i+1 << "\t"
-		     << atomicnumber << "\t"
-		     << fixed << setw(10) << electron << "\t"
-		     << showpos << atomicnumber - electron << endl;
-		cout.unsetf(ios::showpos);
+		os << i+1 << "\t"
+                   << atomicnumber << "\t"
+                   << fixed << setw(10) << electron << "\t"
+                   << showpos << atomicnumber - electron << endl;
+		os.unsetf(ios::showpos);
 	}
 }
 

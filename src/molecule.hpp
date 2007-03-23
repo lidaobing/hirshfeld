@@ -9,12 +9,16 @@ namespace chemistry {
   class Atom;
   class Contraction; 
   class Molecule {
+    // noncopyable
+    Molecule(const Molecule&);
+    Molecule& operator=(const Molecule&);
   public:
-    Molecule(const char * fname);
     Molecule();
+    explicit Molecule(std::istream& is);
     ~Molecule();
-    void read(std::FILE * f);
-    void read(const char * filename);
+
+    void read(std::istream& is);
+    
     double density(double x, double y, double z) const;
     friend std::ostream&
     operator<<(std::ostream& os, const Molecule& mol);

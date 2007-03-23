@@ -2,6 +2,7 @@
 #include <cassert>
 #include <cstring>
 #include <iostream>
+#include <sstream>
 #include "contraction.hpp"
 #include "atom.hpp"
 
@@ -22,22 +23,38 @@ static int pri_idx = 0;
 static std::vector<double> pri_exp; //Primitive exponents
 static std::vector<double> con_coe; //Contraction coefficients
 static std::vector<double> p_con_coe; //P(S=P) Contraction coefficients
-//static std::vector<double> alpha_mo_coe; //Alpha MO coefficients
-//static std::vector<double> beta_mo_coe;  //Beta MO coefficients
 static std::vector<double> total_SCF_density;  //Total SCF Density
 
-static void readintvector(FILE* fp, vector<int>& vi, const char * keyword);
-static void readdoublevector(FILE* fp, vector<double>& vi, const char * keyword);
-//static void readint(FILE* fp, int & i, const char * keyword);
 static bool hasspshell();
 
-
-Molecule::Molecule() {
+template<class T>
+static void read_vector(istream& is,
+                           vector<T>& vi,
+                           const string& keyword) {
+  vi.clear();
+  string tmpstr;
+  while(is) {
+    getline(is, tmpstr);
+    if(tmpstr.find(keyword) != string::npos) break;
+  }
+  if(is.eof()) abort();
+  
+  istringstream iss(tmpstr.substr(49));
+  int num;
+  iss >> num;
+  if(not iss) abort();
+  
+  for(int i = 0; i < num; i++) {
+    T tmpint;
+    is >> tmpint;
+    vi.push_back(tmpint);
+  }
 }
 
+Molecule::Molecule() {}
 
-Molecule::Molecule(const char * fname) {
-  read(fname);
+Molecule::Molecule(istream& is) {
+  read(is);
 }
 
 Molecule::~Molecule() {
@@ -54,49 +71,28 @@ const Atom& Molecule::atom(int idx) const {
   return m_atoms[idx];
 }
 
-void Molecule::read(const char * fname) {
-  FILE * fp;
-  if((fp = fopen(fname, "r")) != NULL) {
-    read(fp);
-    fclose(fp);
-  } else {
-    cerr << "Can't open file " << fname << endl;
-    exit(1);
-  }
-}
-
-void Molecule::read(FILE * fp) {
-  char tmpstr[100];
-
-  //read title(A72)
-  fgets(tmpstr, 80, fp);
-  //read type, method, basis
-  fgets(tmpstr, 80, fp);
+void Molecule::read(istream& is) {
+  string tmpstr;
+  getline(is, tmpstr);
+  getline(is, tmpstr);
+  if(tmpstr.size() < 11) abort();
   if('R' == tmpstr[10]) {
     closeshell = true;
   } else if('U' == tmpstr[10]) {
     closeshell = false;
   } else {
-    cerr << "Can't judge the Molecule is close shell or open shell\n" << endl;
-    exit(1);
+    abort();
   }
 
-  //	readint(fp, alpha_electrons, "Number of alpha electrons");
-  //	readint(fp, beta_electrons, "Number of beta electrons");
-
-  readintvector(fp, atoms, "Atomic numbers");
-  readdoublevector(fp, coords,"Current cartesian coordinates"); // in fchk file, units is a.u.
-  readintvector(fp, shell_type, "Shell types");
-  readintvector(fp, npps, "Number of primitives per shell");
-  readintvector(fp, shell_map, "Shell to atom map");
-  readdoublevector(fp, pri_exp, "Primitive exponents");
-  readdoublevector(fp, con_coe, "Contraction coefficients");
-  if(hasspshell()) readdoublevector(fp, p_con_coe, "P(S=P) Contraction coefficients");
-  //	readdoublevector(fp, alpha_mo_coe, "Alpha MO coefficients");
-  //	if(!closeshell) {
-  //		readdoublevector(fp, beta_mo_coe, "Beta MO coefficients");
-  //	}
-  readdoublevector(fp, total_SCF_density, "Total SCF Density");
+  read_vector<int>(is, atoms, "Atomic numbers");
+  read_vector<double>(is, coords,"Current cartesian coordinates"); // in fchk file, units is a.u.
+  read_vector<int>(is, shell_type, "Shell types");
+  read_vector<int>(is, npps, "Number of primitives per shell");
+  read_vector<int>(is, shell_map, "Shell to atom map");
+  read_vector<double>(is, pri_exp, "Primitive exponents");
+  read_vector<double>(is, con_coe, "Contraction coefficients");
+  if(hasspshell()) read_vector<double>(is, p_con_coe, "P(S=P) Contraction coefficients");
+  read_vector<double>(is, total_SCF_density, "Total SCF Density");
 
   check();
   init();
@@ -300,45 +296,6 @@ ostream& chemistry::operator<<(ostream& os, const Molecule& mol) {
   }
   return os;
 }
-
-
-static void readintvector(FILE* fp, vector<int>& vi, const char * keyword) {
-  vi.clear();
-  char tmpstr[100];
-  do {
-    fgets(tmpstr, 80, fp);
-  } while((strstr(tmpstr, keyword) == NULL) && !feof(fp));
-  if(feof(fp))
-    printf(keyword);
-  int num = atoi(&tmpstr[49]);
-  for(int i = 0; i < num; i++) {
-    int tmpint;
-    fscanf(fp, "%12i", &tmpint);
-    vi.push_back(tmpint);
-  }
-}
-
-static void readdoublevector(FILE* fp, vector<double>& vi, const char * keyword) {
-  vi.clear();
-  char tmpstr[100];
-  do {
-    fgets(tmpstr, 80, fp);
-  } while(strstr(tmpstr, keyword) == NULL);
-  int num = atoi(&tmpstr[49]);
-  for(int i = 0; i < num; i++) {
-    double tmpdouble;
-    fscanf(fp, "%le", &tmpdouble);
-    vi.push_back(tmpdouble);
-  }
-}
-
-// static void readint(FILE* fp, int & i, const char * keyword) {
-// 	char tmpstr[100];
-// 	do {
-// 		fgets(tmpstr, 80, fp);
-// 	} while(strstr(tmpstr, keyword) == NULL);
-// 	i = atoi(&tmpstr[49]);
-// }
 
 static bool hasspshell() {
   const int SP = -1;
