@@ -19,7 +19,7 @@ Atomdata::Atomdata(int atomicnumber)
   fname << PACKAGE_DATA_DIR "/" << atomicnumber << ".data";
   ifstream in(fname.str().c_str());
   if(!in) {
-    cerr << "Can't open file " << fname << endl;
+    cerr << "Can't open file " << fname << '\n';
     exit(1);
   }
   for(int i = 0; i < 100; i++) {

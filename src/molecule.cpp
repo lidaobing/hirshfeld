@@ -49,6 +49,7 @@ static bool read_vector(istream& is,
     is >> tmpint;
     vi.push_back(tmpint);
   }
+  return true;
 }
 
 Molecule::Molecule()
@@ -298,12 +299,12 @@ double Molecule::density(double x, double y, double z) const {
 }
 
 ostream& chemistry::operator<<(ostream& os, const Molecule& mol) {
-  os << "Atomic Number          x               y               z" << endl;
+  os << "Atomic Number          x               y               z\n";
   int atmnum = mol.m_atoms.size();
   for(int i = 0; i < atmnum; i++) {
     os << mol.m_atoms[i];
   }
-  os << "atom\tmajort\tminort\tprims\tm_N" << endl;
+  os << "atom\tmajort\tminort\tprims\tm_N\n";
   int contnum = mol.conts.size();
   for(int i = 0; i < contnum; i++) {
     os << *(mol.conts[i]);

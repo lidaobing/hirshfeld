@@ -11,7 +11,6 @@ namespace chemistry {
 		double x;
 		double y;
 		double z;
-		friend std::ostream& operator<<(std::ostream& os, const Atom& atom);
 	};
 	std::ostream& operator<<(std::ostream& os, const Atom& atom);
 };

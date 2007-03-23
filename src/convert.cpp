@@ -38,7 +38,7 @@ int main(int argc, char * argv[]) {
   ifs.close();
   
   if(mol.atmnum() != 1) {
-    cerr << "Only for atom's fchk file!" << endl;
+    cerr << "Only for atom's fchk file!\n";
     exit(1);
   }
   convert(mol);
@@ -52,7 +52,7 @@ void convert(const Molecule & mol) {
   for(int i = 0; i < RADIUSNUM; i++) {
     double x = cos((i+0.5)/RADIUSNUM*M_PI);
     double r = rm * (1 - x) / (1 + x);
-    cout << scientific << r << "\t" << density(mol, r) << endl;
+    cout << scientific << r << "\t" << density(mol, r) << '\n';
   }
 }
 

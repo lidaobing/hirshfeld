@@ -188,7 +188,7 @@ ostream& chemistry::operator<<(ostream& os, const Contraction& con) {
 	   << con.m_minortype << "\t"
 	   << con.m_prims.size() << "\t"
 	   << fixed << con.m_N
-	   << endl;
+	   << '\n';
 	return os;
 }
 

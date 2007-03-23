@@ -37,7 +37,7 @@ Hirshfeld::~Hirshfeld() {
 void Hirshfeld::run(ostream& os) {
   if(m_dirty) return;
 	int atmnum = mol.atmnum();
-	os << "No.\tAtomic\telctron\t\tcharge" << endl;
+	os << "No.\tAtomic\telctron\t\tcharge\n";
 	for(int i = 0; i < atmnum; i++) {
 		activeatom = i;
 		double electron = gauss_chebyshev_integrate(30);
@@ -45,7 +45,7 @@ void Hirshfeld::run(ostream& os) {
 		os << i+1 << "\t"
                    << atomicnumber << "\t"
                    << fixed << setw(10) << electron << "\t"
-                   << showpos << atomicnumber - electron << endl;
+                   << showpos << atomicnumber - electron << '\n';
 		os.unsetf(ios::showpos);
 	}
 }

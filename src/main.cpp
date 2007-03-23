@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
   } else {
     ofs.open(argv[2]);
     if(!ofs) {
-      cerr << "Can't open output file: " << argv[2] << endl;
+      cerr << "Can't open output file: " << argv[2] << '\n';
       exit(1);
     }
     p_os = &ofs;
