@@ -1,5 +1,7 @@
 2007-03-24  LI Daobing  <lidaobing@gmail.com>
 
+	* configure.in: bump version to 0.2.2.dev
+
 	* INSTALL: added.
 
 	* autogen.sh: added.

@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([hirshfeld],[0.2.1],[lidaobing@gmail.com])
-AM_INIT_AUTOMAKE(hirshfeld, 0.2.1)
+AC_INIT([hirshfeld],[0.2.2.dev],[lidaobing@gmail.com])
+AM_INIT_AUTOMAKE(hirshfeld, 0.2.2.dev)
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER(config.h)
 
