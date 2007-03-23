@@ -10,11 +10,11 @@ namespace chemistry {
   class Contraction; 
   class Molecule {
   public:
-    Molecule(char * fname);
+    Molecule(const char * fname);
     Molecule();
     ~Molecule();
     void read(std::FILE * f);
-    void read(char * filename);
+    void read(const char * filename);
     double density(double x, double y, double z) const;
     friend std::ostream&
     operator<<(std::ostream& os, const Molecule& mol);

@@ -1,5 +1,9 @@
 2007-03-24  LI Daobing  <lidaobing@gmail.com>
 
+	* src/molecule.cpp: s/char*/const char*/
+
+	* src/molecule.hpp: s/char*/const char*/
+
 	* configure.in: bump version to 0.2.2.dev
 
 	* INSTALL: added.

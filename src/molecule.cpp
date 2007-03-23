@@ -36,7 +36,7 @@ Molecule::Molecule() {
 }
 
 
-Molecule::Molecule(char * fname) {
+Molecule::Molecule(const char * fname) {
   read(fname);
 }
 
@@ -54,7 +54,7 @@ const Atom& Molecule::atom(int idx) const {
   return m_atoms[idx];
 }
 
-void Molecule::read(char * fname) {
+void Molecule::read(const char * fname) {
   FILE * fp;
   if((fp = fopen(fname, "r")) != NULL) {
     read(fp);
