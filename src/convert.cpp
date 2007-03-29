@@ -4,10 +4,10 @@
 #include <cstdlib>
 #include <cmath>
 #include <fstream>
+#include <libgen.h>
 #include "molecule.hpp"
 #include "lebedev.hpp"
 #include "slater.hpp"
-#include "port.h"
 #include "atom.hpp"
 
 using namespace std;

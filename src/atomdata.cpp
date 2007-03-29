@@ -16,7 +16,7 @@ Atomdata::Atomdata(int atomicnumber)
 	:m_atomicnumber(atomicnumber)
 {
   ostringstream fname;
-  fname << PACKAGE_DATA_DIR "/" << atomicnumber << ".data";
+  fname << "/usr/share/hirshfeld/" << atomicnumber << ".data";
   ifstream in(fname.str().c_str());
   if(!in) {
     cerr << "Can't open file " << fname << '\n';

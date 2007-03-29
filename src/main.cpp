@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <libgen.h>
 #include "hirshfeld.hpp"
-#include "port.h"
 using namespace std;
 
 int main(int argc, char* argv[]) {
