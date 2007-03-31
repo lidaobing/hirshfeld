@@ -1,23 +1,34 @@
 #include "atomdata.hpp"
-#include "slater.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include "slater.hpp"
+#include "base_directory.hpp"
 
 using namespace std;
 using namespace chemistry;
 
-Atomdata::Atomdata() {
+Atomdata::Atomdata()
+  : m_dirty(false)
+{
 }
 
 Atomdata::Atomdata(int atomicnumber)
-	:m_atomicnumber(atomicnumber)
+  : m_atomicnumber(atomicnumber),
+    m_dirty(false)
 {
-  ostringstream fname;
-  fname << "/usr/share/hirshfeld/" << atomicnumber << ".data";
-  ifstream in(fname.str().c_str());
+  ostringstream resource;
+  resource << atomicnumber << ".data";
+
+  string fname = load_first_data(resource.str());
+  if(fname.empty()) {
+    m_dirty = true;
+    return;
+  }
+  
+  ifstream in(fname.c_str());
   if(!in) {
     cerr << "Can't open file " << fname << '\n';
     exit(1);
