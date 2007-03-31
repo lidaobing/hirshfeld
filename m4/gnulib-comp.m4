@@ -47,6 +47,8 @@ AC_DEFUN([gl_INIT],
   gl_EXITFAIL
   dnl gl_USE_SYSTEM_EXTENSIONS must be added quite early to configure.ac.
   gl_INLINE
+  gl_LONG_OPTIONS
+  gl_STDARG_H
   AM_STDBOOL_H
   gl_FUNC_STRNDUP
   gl_FUNC_STRNLEN
@@ -102,12 +104,16 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/exitfail.c
   lib/exitfail.h
   lib/gettext.h
+  lib/long-options.c
+  lib/long-options.h
   lib/stdbool_.h
   lib/stripslash.c
   lib/strndup.c
   lib/strndup.h
   lib/strnlen.c
   lib/strnlen.h
+  lib/version-etc.c
+  lib/version-etc.h
   lib/xalloc-die.c
   lib/xalloc.h
   lib/xmalloc.c
@@ -121,7 +127,9 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/exitfail.m4
   m4/extensions.m4
   m4/inline.m4
+  m4/long-options.m4
   m4/onceonly_2_57.m4
+  m4/stdarg.m4
   m4/stdbool.m4
   m4/strndup.m4
   m4/strnlen.m4

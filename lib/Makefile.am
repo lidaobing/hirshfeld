@@ -16,7 +16,7 @@ AUTOMAKE_OPTIONS = 1.5 gnits
 noinst_HEADERS =
 noinst_LIBRARIES =
 noinst_LTLIBRARIES =
-EXTRA_DIST =
+EXTRA_DIST = version_etc_copyright.c
 BUILT_SOURCES =
 SUFFIXES =
 MOSTLYCLEANFILES = core *.stackdump
@@ -29,10 +29,10 @@ AM_CPPFLAGS =
 
 noinst_LIBRARIES += libgnu.a
 
-libgnu_a_SOURCES =
+libgnu_a_SOURCES = version_etc_copyright.c
 libgnu_a_LIBADD = $(gl_LIBOBJS)
 libgnu_a_DEPENDENCIES = $(gl_LIBOBJS)
-EXTRA_libgnu_a_SOURCES = version_etc_copyright.c
+EXTRA_libgnu_a_SOURCES =
 
 ## begin gnulib module dirname
 
