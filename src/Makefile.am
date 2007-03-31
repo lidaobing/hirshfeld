@@ -1,5 +1,8 @@
 AM_CXXFLAGS = -Wall -Wextra
-INCLUDES = -DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\"
+
+INCLUDES = -I$(top_srcdir)/lib
+LDADD = $(top_builddir)/lib/libgnu.a
+
 bin_PROGRAMS = hirshfeld
 
 commmonsources = atom.cpp atom.hpp atomdata.cpp atomdata.hpp contraction.cpp \
@@ -8,9 +11,7 @@ commmonsources = atom.cpp atom.hpp atomdata.cpp atomdata.hpp contraction.cpp \
 		 slater.hpp port.h
 		 
 hirshfeld_SOURCES = main.cpp $(commmonsources)
-hirshfeld_LDADD = @LIBOBJS@
 
 convertdir = $(datadir)/hirshfeld
 convert_PROGRAMS = convert
 convert_SOURCES = convert.cpp $(commmonsources)
-convert_LDADD = @LIBOBJS@

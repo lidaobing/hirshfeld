@@ -1,6 +1,10 @@
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <iostream>
 #include <fstream>
-#include <libgen.h>
+#include "dirname.h"
 #include "hirshfeld.hpp"
 using namespace std;
 

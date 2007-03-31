@@ -9,9 +9,11 @@ AM_CONFIG_HEADER(config.h)
 
 # Checks for programs.
 AC_PROG_CC
+gl_EARLY
 AC_PROG_CXX
 
 # Checks for libraries.
+gl_INIT
 AC_CHECK_LIB([m], [pow, sqrt], [], [AC_MSG_ERROR(libm not found)])
 
 # Checks for header files.
@@ -23,9 +25,10 @@ AC_CHECK_HEADERS([string.h strings.h], break)
 # Checks for library functions.
 AC_CHECK_FUNCS([strstr], [], [AC_MSG_ERROR(strstr not found)])
 AC_CHECK_FUNCS([strrchr])
-AC_REPLACE_FUNCS([basename])
 
 AC_CONFIG_FILES([Makefile
                  data/Makefile
-                 src/Makefile])
+                 src/Makefile
+		 lib/Makefile
+		 ])
 AC_OUTPUT
