@@ -1,5 +1,16 @@
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
+	* src/hirshfeld.hpp, src/hirshfeld.cpp, src/main.cpp: Hirshfeld
+	maybe failed to construct
+
+	* src/atomdata.cpp (Atomdata::Atomdata): we should load
+	"hirshfeld/<n>.data" instead of "<n>.data"
+	(Atomdata::Atomdata): print debug information if load resource
+	failed
+
+	* src/debug.hpp, src/debug.cpp, src/Makefile.am: add a simple
+	debugger.
+
 	* src/base_directory.cpp: strip ":" from env(XDG_DATA_DIRS)
 
 2007-03-31  gettextize  <bug-gnu-gettext@gnu.org>
