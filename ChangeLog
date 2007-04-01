@@ -1,3 +1,21 @@
+2007-04-02  LI Daobing  <lidaobing@gmail.com>
+
+	* src/base_directory.cpp: strip ":" from env(XDG_DATA_DIRS)
+
+2007-03-31  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* m4/gettext.m4: New file, from gettext-0.16.1.
+	* m4/iconv.m4: New file, from gettext-0.16.1.
+	* m4/lib-ld.m4: New file, from gettext-0.16.1.
+	* m4/lib-link.m4: New file, from gettext-0.16.1.
+	* m4/lib-prefix.m4: New file, from gettext-0.16.1.
+	* m4/nls.m4: New file, from gettext-0.16.1.
+	* m4/po.m4: New file, from gettext-0.16.1.
+	* m4/progtest.m4: New file, from gettext-0.16.1.
+	* Makefile.am (SUBDIRS): Add po.
+	(EXTRA_DIST): New variable.
+	* configure.in (AC_CONFIG_FILES): Add po/Makefile.in.
+
 2007-03-24  LI Daobing  <lidaobing@gmail.com>
 
 	* src/main.cpp (main): check format error of fchk file

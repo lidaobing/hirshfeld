@@ -42,6 +42,14 @@ private:
     if(not tmp) tmp = "/usr/local/share:/usr/share";
 
     string tmp2 = tmp;
+    while(not tmp2.empty() and tmp2[0] == ':') {
+      tmp2 = tmp2.substr(1);
+    }
+
+    while(not tmp2.empty() and tmp2[tmp2.size()-1] == ':') {
+      tmp2 = tmp2.substr(0, tmp2.size()-1);
+    }
+
     m_xdg_data_dirs.push_back(m_xdg_data_home);
     size_t pos = 0;
     while(pos != string::npos) {
