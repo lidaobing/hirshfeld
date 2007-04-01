@@ -8,7 +8,7 @@ bin_PROGRAMS = hirshfeld
 commmonsources = atom.cpp atom.hpp atomdata.cpp atomdata.hpp contraction.cpp \
 		 contraction.hpp hirshfeld.cpp hirshfeld.hpp lebedev.cpp \
 		 lebedev.hpp molecule.cpp molecule.hpp molorbit.hpp slater.cpp \
-		 slater.hpp base_directory.cpp
+		 slater.hpp base_directory.cpp debug.hpp debug.cpp
 		 
 hirshfeld_SOURCES = main.cpp $(commmonsources)
 

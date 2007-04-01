@@ -19,19 +19,24 @@ Hirshfeld::Hirshfeld(istream& is)
   mol.read(is);
 
   if(not mol) {
+    m_error_str = "format error in fchk file";
     m_dirty = true;
     return;
   }
 
   Lebedev_Laikov_sphere(110, lebedev_x, lebedev_y, lebedev_z, lebedev_w);
-  initatoms();
+
+  if(not initatoms()) {
+    m_error_str = "init atom data failed";
+    m_dirty = true;
+    return;
+  }
 }
 
 Hirshfeld::~Hirshfeld() {
-	int atmnum = mol.atmnum();
-	for(int i = 0; i < atmnum; i++) {
-		delete atoms[i];
-	}
+  for(unsigned i = 0; i < atoms.size(); i++) {
+    delete atoms[i];
+  }
 }
 
 void Hirshfeld::run(ostream& os) {
@@ -50,13 +55,19 @@ void Hirshfeld::run(ostream& os) {
 	}
 }
 
-void Hirshfeld::initatoms() {
-	int atomnum = mol.atmnum();
-	for(int i = 0; i < atomnum; i++) {
-		int number = mol.atom(i).atomicnumber;
-		Atomdata * tmp = new Atomdata(number);
-		atoms.push_back(tmp);
-	}
+// FIXME: for each atom-type, we only need one Atomdata
+bool Hirshfeld::initatoms() {
+  int atomnum = mol.atmnum();
+  for(int i = 0; i < atomnum; i++) {
+    int number = mol.atom(i).atomicnumber;
+    Atomdata * tmp = new Atomdata(number);
+    if(not *tmp) {
+      delete tmp;
+      return false;
+    }
+    atoms.push_back(tmp);
+  }
+  return true;
 }
 
 // void Hirshfeld::test() const {

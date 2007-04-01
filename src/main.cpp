@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
   Hirshfeld hir(*p_is);
   if(not hir) {
-    cout << "format error in fchk file: " << argv[1] << "\n";
+    cout << hir.error_str() << "\n";
     exit(1);
   }
 
