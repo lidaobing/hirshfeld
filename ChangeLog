@@ -1,5 +1,7 @@
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
+	* README: the first README
+
 	* src/hirshfeld.hpp, src/hirshfeld.cpp, src/main.cpp: Hirshfeld
 	maybe failed to construct
 
