@@ -1,5 +1,10 @@
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
+	* src/atom.cpp, src/atomdata.cpp, src/contraction.cpp,
+	src/convert.cpp, src/hirshfeld.cpp, src/lebedev.cpp, src/main.cpp,
+	src/molecule.cpp, src/slater.cpp: every cpp file should include
+	config.h
+
 	* README: the first README
 
 	* src/hirshfeld.hpp, src/hirshfeld.cpp, src/main.cpp: Hirshfeld

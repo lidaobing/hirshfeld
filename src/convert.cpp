@@ -1,5 +1,6 @@
 // $Id: convert.cpp 19 2007-01-09 16:35:00Z nichloas $
 
+#include "config.h"
 #include <iostream>
 #include <cstdlib>
 #include <cmath>

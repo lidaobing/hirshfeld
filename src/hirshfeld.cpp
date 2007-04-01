@@ -1,5 +1,6 @@
 // -*- coding: utf-8 -*-
 // $Id: hirshfeld.cpp 18 2006-07-11 12:35:43Z nichloas $
+#include "config.h"
 #include "hirshfeld.hpp"
 #include <cstdio>
 #include <cmath>

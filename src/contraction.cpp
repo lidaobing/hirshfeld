@@ -1,3 +1,4 @@
+#include "config.h"
 #include "contraction.hpp"
 #include <vector>
 #include <cassert>

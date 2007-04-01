@@ -1,4 +1,6 @@
+#include "config.h"
 #include "slater.hpp"
+
 //J.C. Slater J. Chem. Phys. 41. 3199(1964)
 double Slater_radius(int atmtype) {
 	const static double r[] = {

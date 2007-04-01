@@ -1,3 +1,4 @@
+#include "config.h"
 #include "molecule.hpp"
 #include <cassert>
 #include <cstring>

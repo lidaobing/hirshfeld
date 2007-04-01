@@ -44,10 +44,11 @@ chvd       1975, pp. 44-51.
 chvd
 */
 
+#include "config.h"
+#include "lebedev.hpp"
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include "lebedev.hpp"
 
 #define INTHISFILE
 

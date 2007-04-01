@@ -1,3 +1,4 @@
+#include "config.h"
 #include "atomdata.hpp"
 #include <iostream>
 #include <fstream>

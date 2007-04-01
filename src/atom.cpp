@@ -1,3 +1,4 @@
+#include "config.h"
 #include "atom.hpp"
 #include <iomanip>
 using namespace std;
