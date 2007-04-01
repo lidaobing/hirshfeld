@@ -1,5 +1,8 @@
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
+	* m4/config-h.m4, m4/gnulib-cache.m4, m4/gnulib-comp.m4: import
+	config-h from gnulib
+
 	* src/atom.cpp, src/atomdata.cpp, src/contraction.cpp,
 	src/convert.cpp, src/hirshfeld.cpp, src/lebedev.cpp, src/main.cpp,
 	src/molecule.cpp, src/slater.cpp: every cpp file should include

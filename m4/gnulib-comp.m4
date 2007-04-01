@@ -42,6 +42,7 @@ AC_DEFUN([gl_INIT],
   gl_ltlibdeps=
   gl_source_base='lib'
   gl_ASSERT
+  gl_CONFIG_H
   gl_DIRNAME
   gl_ERROR
   gl_EXITFAIL
@@ -120,6 +121,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/xstrndup.c
   lib/xstrndup.h
   m4/assert.m4
+  m4/config-h.m4
   m4/dirname.m4
   m4/dos.m4
   m4/double-slash-root.m4
