@@ -1,5 +1,8 @@
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
+	* src/Makefile.am, data/Makefile.am: directly use pkglib and
+	pkgdata
+
 	* m4/config-h.m4, m4/gnulib-cache.m4, m4/gnulib-comp.m4: import
 	config-h from gnulib
 
