@@ -1,3 +1,9 @@
+2007-04-14  LI Daobing  <lidaobing@gmail.com>
+
+	* add slater radius data:
+	  - data/slater-radius.dat: added
+	  - data/Makefile.am: updated
+
 2007-04-02  LI Daobing  <lidaobing@gmail.com>
 
 	* src/Makefile.am, data/Makefile.am: directly use pkglib and
