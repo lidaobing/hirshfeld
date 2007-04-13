@@ -1,0 +1,3 @@
+Version 0.2.2 (13 April 2007)
+* fulfill desktop base directory specification.
+* fix a bug when there is no corresponding slater radius.
