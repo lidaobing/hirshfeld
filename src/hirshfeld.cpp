@@ -10,6 +10,7 @@
 #include "lebedev.hpp"
 #include "atomdata.hpp"
 #include "atom.hpp"
+#include "debug.hpp"
 
 using namespace chemistry;
 using namespace std;
@@ -46,6 +47,7 @@ void Hirshfeld::run(ostream& os) {
 	os << "No.\tAtomic\telctron\t\tcharge\n";
 	for(int i = 0; i < atmnum; i++) {
 		activeatom = i;
+                debug << i << '\n';
 		double electron = gauss_chebyshev_integrate(30);
 		int atomicnumber = mol.atom(i).atomicnumber;
 		os << i+1 << "\t"
@@ -83,6 +85,7 @@ bool Hirshfeld::initatoms() {
 
 
 double Hirshfeld::density(double r) const {
+  debug << "Hirshfeld::density: enter" << '\t' << r << '\n';
 	double result = 0.0;
 	double x0 = mol.atom(activeatom).x;
 	double y0 = mol.atom(activeatom).y;
@@ -97,8 +100,8 @@ double Hirshfeld::density(double r) const {
 		double z = z0 + r * lebedev_z[i];
 		double w = lebedev_w[i];
 		double moldensity = mol.density(x,y,z);
-		if(moldensity < 1e-20)
-			return 0.0;
+		//if(moldensity < 1e-20)
+		//	return 0.0;
 		double sumatmdensity = 0.0;
 		for(int j = 0; j < atmnum; j++) {
 			const Atom & tmpatom = mol.atom(j);
@@ -111,22 +114,36 @@ double Hirshfeld::density(double r) const {
 			atmdensity[j] = atomdensity(j, r);
 			sumatmdensity += atmdensity[j];
 		}
-//		result += w * atmdensity[activeatom];
-
-
-		result += w * atmdensity[activeatom] / sumatmdensity * moldensity;
+                double delta = 0.0;
+                if(atmdensity[activeatom] != 0) {
+		  delta = atmdensity[activeatom] / sumatmdensity * moldensity * w;
+                }
+                debug << "density: " << i << '\t' << delta << " = " << w << " * " << atmdensity[activeatom] 
+                      << " / " << sumatmdensity << " * " << moldensity << '\n';
+                result += delta;
 
 	}
-	delete []atmdensity;
+	delete[] atmdensity;
 	return result;
 }
 
 double Hirshfeld::sphereint(double x) const{
-	double rm = radiusmedium(activeatom);
+  debug << "Hirshfeld::sphereint: enter\t" << x << '\n';
+  double rm = radiusmedium(activeatom);
+  debug << "Hirshfeld::sphereint: rm\t" << rm << '\n';
+    
 	double r = rm * (1+x) / (1-x);
 	double dens = density(r);
 	double result = dens * 4 * M_PI * r * r * 2 * rm /(x-1)/(x-1);
-//	cout << rm << "\t" << r << "\t" << dens << endl;
+        debug << "  "
+              << result << " = "
+              << dens << " * "
+              << " 4pi * "
+              << r << "^2 * "
+              << " 2 * " << rm << " / "
+              << (x-1) << "^2\n";
+
+//	debug << rm << "\t" << r << "\t" << dens << endl;
 	return result;
 }
 
@@ -154,8 +171,16 @@ double Hirshfeld::gauss_chebyshev_integrate(int n) {
 	double coef = M_PI / (n + 1.0);
 	for(int i=0; i <= n; i++) {    // confirm "<="
 		double x = cos((2*i+1.0)/(2*n+2.0)*M_PI);
-		result += coef * sphereint(x) * sqrt(1-x*x);
-//		cout << i << "\t" << x << "\t" <<result << endl;
+                double sphereint_x = sphereint(x);
+		double delta = coef * sphereint_x * sqrt(1-x*x);
+                result += delta;
+                debug << ' ' << i
+                      << '\t' << delta
+                      << " = " << coef
+                      << " * " << sphereint_x
+                      << " * " << sqrt(1-x*x)
+                      << '\n';
+		// debug << ' ' << i << "\t" << x << "\t" <<result << '\n';
 	}
 	return result;
 }

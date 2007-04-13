@@ -5,6 +5,14 @@
 
 using namespace std;
 
-void debug(const string& str) {
-  clog << str << '\n';
-}
+#ifdef DEBUG
+
+ostream& debug = clog;
+
+#else
+
+DummyOstream theDummyOstream;
+DummyOstream& debug = theDummyOstream;
+
+#endif
+

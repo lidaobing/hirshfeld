@@ -1,9 +1,22 @@
 #ifndef DEBUG_HPP
 #define DEBUG_HPP
 
-#include <string>
+#include <ostream>
 
-// FIXME: need a better debug library
-void debug(const std::string&);
+#ifdef DEBUG
+extern std::ostream& debug;
+#else
+
+class DummyOstream {
+};
+
+template<class C>
+DummyOstream& operator<<(DummyOstream& os,
+                         const C&)
+{
+  return os;
+}
+extern DummyOstream& debug;
+#endif
 
 #endif
