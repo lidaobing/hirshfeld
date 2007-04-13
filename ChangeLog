@@ -1,5 +1,7 @@
 2007-04-14  LI Daobing  <lidaobing@gmail.com>
 
+	* README: convert installed at pkglib
+
 	* make distcheck shoudl passed:
 	  - Makefile.am: updated
 	  - src/Makefile.am: updated
