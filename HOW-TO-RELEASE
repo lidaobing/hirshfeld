@@ -1,0 +1,7 @@
+1. update NEWS, configure.in, debian/changelog
+2. check README have been updated about the new feature
+3. confirm 'make distcheck' can pass
+4. svn commit and svn tag
+5. run 'make dist' to generate the source package.
+6. publish source package
+7. update NEWS, configure.in, debian/changelog to the new version
