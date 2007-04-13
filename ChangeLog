@@ -1,5 +1,8 @@
 2007-04-14  LI Daobing  <lidaobing@gmail.com>
 
+	* release 0.2.2
+	  - NEWS, configur.in, debian/changelog: updated
+
 	* HOW-TO-RELEASE: added
 
 	* README: convert installed at pkglib
