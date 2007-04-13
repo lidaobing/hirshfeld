@@ -1,5 +1,10 @@
 2007-04-14  LI Daobing  <lidaobing@gmail.com>
 
+	* src/atomdata.cpp: add 3 FIXME
+
+	* src/slater.cpp: if there is no slater radius data or radius is
+	negative, return the default one.
+
 	* add slater radius data:
 	  - data/slater-radius.dat: added
 	  - data/Makefile.am: updated

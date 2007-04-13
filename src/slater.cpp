@@ -1,6 +1,8 @@
 #include "config.h"
 #include "slater.hpp"
 
+static const double default_slater_radius = 1.35; // unit: Angstrom
+
 //J.C. Slater J. Chem. Phys. 41. 3199(1964)
 double Slater_radius(int atmtype) {
 	const static double r[] = {
@@ -42,10 +44,12 @@ double Slater_radius(int atmtype) {
 		1.15};   //Br
 	int maxnum = sizeof(r)/sizeof(r[0]);
 	const double Angstrom2au = 1.88972;
-	if(atmtype > 0 && atmtype < maxnum) {
+	if(atmtype > 0 
+           and atmtype < maxnum
+           and r[atmtype] > 0) {
 		return r[atmtype] * Angstrom2au;
 	} else {
-		return -1.0;
+          return default_slater_radius * Angstrom2au;
 	}
 }
 

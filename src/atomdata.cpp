@@ -18,6 +18,9 @@ Atomdata::Atomdata()
 {
 }
 
+// FIXME: don't assume the data have 100 lines
+// FIXME: don't assume data is sorted
+// FIXME: need check all data is valid (i.e. all data should be positive)
 Atomdata::Atomdata(int atomicnumber)
   : m_atomicnumber(atomicnumber),
     m_dirty(false)
@@ -43,6 +46,7 @@ Atomdata::Atomdata(int atomicnumber)
     in >> tmp1 >> tmp2;
     m_r.push_back(tmp1);
     m_density.push_back(tmp2);
+    debug << tmp1 << '\t' << tmp2 << '\n';
   }
   m_rm = Slater_radius(atomicnumber);
 }
