@@ -11,7 +11,7 @@ class DummyOstream {
 };
 
 template<class C>
-DummyOstream& operator<<(DummyOstream& os,
+inline DummyOstream& operator<<(DummyOstream& os,
                          const C&)
 {
   return os;
