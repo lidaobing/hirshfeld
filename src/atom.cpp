@@ -1,6 +1,7 @@
 #include "config.h"
 #include "atom.hpp"
 #include <iomanip>
+#include <iostream>
 using namespace std;
 
 namespace chemistry {

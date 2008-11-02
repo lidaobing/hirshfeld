@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "dirname.h"
 #include "long-options.h"
 #include "hirshfeld.hpp"

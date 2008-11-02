@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+#include <cstdlib>
 #include "atom.hpp"
 
 using chemistry::Contraction;

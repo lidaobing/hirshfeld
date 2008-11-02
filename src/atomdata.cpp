@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <cassert>
+#include <algorithm>
 #include "slater.hpp"
 #include "base_directory.hpp"
 #include "debug.hpp"
