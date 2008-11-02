@@ -29,14 +29,21 @@ Atomdata::Atomdata(int atomicnumber)
   ostringstream resource;
   resource << "hirshfeld/" << atomicnumber << ".data";
 
-  string fname = load_first_data(resource.str());
-  if(fname.empty()) {
-    debug << string("open ") + resource.str() + " failed.";
-    m_dirty = true;
-    return;
+  ifstream in;
+  char fname[32];
+
+  snprintf(fname, 32, "%d.data", atomicnumber);
+  in.open(fname);
+  if(not in) {
+    string fname = load_first_data(resource.str());
+    if(fname.empty()) {
+      debug << string("open ") + resource.str() + " failed.";
+      m_dirty = true;
+      return;
+    }
+    in.open(fname.c_str());
   }
   
-  ifstream in(fname.c_str());
   if(!in) {
     cerr << "Can't open file " << fname << '\n';
     exit(1);
