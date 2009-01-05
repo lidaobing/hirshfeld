@@ -1,10 +1,13 @@
 #include "config.h"
 #include "contraction.hpp"
+
 #include <vector>
 #include <cassert>
 #include <cmath>
 #include <iostream>
 #include <cstdlib>
+#include <cstdio>
+
 #include "atom.hpp"
 
 using chemistry::Contraction;
