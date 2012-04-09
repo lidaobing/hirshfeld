@@ -1,0 +1,8 @@
+before_install:
+  - sudo apt-get install autoconf libtool
+# command to install dependencies
+install:
+  - ./autogen.sh
+  - ./configure
+# command to run tests
+script: make
