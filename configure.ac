@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([hirshfeld],[0.2.3],[lidaobing@gmail.com])
+AC_INIT([hirshfeld],[0.2.4],[lidaobing@gmail.com])
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER(config.h)
