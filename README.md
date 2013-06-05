@@ -45,7 +45,6 @@ $ formchk foo.chk foo.fchk
 ```
 
 ## CUSTOMIZE
-=========
 
 hirshfeld need the electro density information for each atom, I only
 provide H, C, N, O, P, S's data. these data is obtained by gaussian
@@ -80,7 +79,7 @@ more information, check [1](http://freedesktop.org/wiki/Specifications_2fbasedir
 ## DEVELOPMENT VERSION
 
 you can obtain the development version by
-svn checkout http://hirshfeld.googlecode.com/svn/trunk/ hirshfeld
+`git clone git://github.com/lidaobing/hirshfeld.git`
 
 ## BUGS
 
