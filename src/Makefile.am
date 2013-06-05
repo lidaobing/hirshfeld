@@ -1,6 +1,6 @@
 AM_CXXFLAGS = -Wall -Wextra
 
-INCLUDES = -I$(top_srcdir)/lib
+AM_CPPFLAGS = -I$(top_srcdir)/lib
 LDADD = $(top_builddir)/lib/libgnu.a
 
 bin_PROGRAMS = hirshfeld
@@ -12,5 +12,5 @@ commmonsources = atom.cpp atom.hpp atomdata.cpp atomdata.hpp contraction.cpp \
 
 hirshfeld_SOURCES = main.cpp $(commmonsources)
 
-pkglib_PROGRAMS = convert
+pkglibexec_PROGRAMS = convert
 convert_SOURCES = convert.cpp $(commmonsources)

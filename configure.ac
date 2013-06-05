@@ -3,7 +3,7 @@
 
 AC_PREREQ(2.59)
 AC_INIT([hirshfeld],[0.2.3],[lidaobing@gmail.com])
-AM_INIT_AUTOMAKE(hirshfeld, 0.2.3)
+AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER(config.h)
 
