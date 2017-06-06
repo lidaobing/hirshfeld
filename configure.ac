@@ -13,7 +13,8 @@ AC_PROG_CXX
 AC_PROG_RANLIB
 
 # Checks for libraries.
-AC_CHECK_LIB([m], [pow, sqrt], [], [AC_MSG_ERROR(libm not found)])
+AC_CHECK_LIB([m], [pow], [], [AC_MSG_ERROR(libm not found)])
+AC_CHECK_LIB([m], [sqrt], [], [AC_MSG_ERROR(libm not found)])
 
 # Checks for header files.
 AC_CHECK_HEADERS([libgen.h])
