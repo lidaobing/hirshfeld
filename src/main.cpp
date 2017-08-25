@@ -4,8 +4,6 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstring>
-#include "dirname.h"
-#include "long-options.h"
 #include "hirshfeld.hpp"
 using namespace std;
 

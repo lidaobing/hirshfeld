@@ -6,7 +6,6 @@
 #include <vector>
 #include <cstdlib>
 #include <unistd.h>
-#include "dirname.h"
 
 using namespace std;
 

@@ -6,7 +6,6 @@
 #include <cmath>
 #include <fstream>
 #include <libgen.h>
-#include "dirname.h"
 #include "molecule.hpp"
 #include "lebedev.hpp"
 #include "slater.hpp"

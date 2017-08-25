@@ -1,0 +1,3 @@
+#define VERSION "@VERSION@"
+#define PACKAGE_NAME "@PACKAGE_NAME@"
+#cmakedefine DEBUG

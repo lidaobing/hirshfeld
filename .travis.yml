@@ -1,8 +1,11 @@
-before_install:
-  - sudo apt-get install autoconf libtool
-# command to install dependencies
-install:
-  - ./autogen.sh
-  - ./configure
-# command to run tests
-script: make
+language: cpp
+compiler:
+  - gcc
+  - clang
+script: cmake . && make
+dist: trusty
+sudo: false
+addons:
+  apt:
+    packages:
+    - cmake
