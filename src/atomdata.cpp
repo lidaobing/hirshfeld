@@ -37,7 +37,7 @@ Atomdata::Atomdata(int atomicnumber)
   if(not in) {
     string fname = load_first_data(resource.str());
     if(fname.empty()) {
-      debug << string("open ") + resource.str() + " failed." << endl;
+      debug << string("open ") + resource.str() + " failed.\n";
       m_dirty = true;
       return;
     }
