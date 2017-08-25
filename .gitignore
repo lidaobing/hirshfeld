@@ -1,7 +1,6 @@
 Makefile
 Makefile.in
 autom4te.cache
-config.*
 configure
 *.o
 .deps
@@ -29,3 +28,9 @@ _CPack_Packages
 CPackConfig.cmake
 
 CPackSourceConfig.cmake
+
+config.h
+
+config.log
+
+config.status
