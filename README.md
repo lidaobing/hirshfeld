@@ -22,7 +22,7 @@ buggy and not free. This program is licensed under GPL.
 ## DOWNLOAD
 
 you can download the stable version from
-http://code.google.com/p/hirshfeld/ .
+http://github.com/lidaobing/hirshfeld .
 
 
 ## INSTALL
@@ -30,6 +30,8 @@ http://code.google.com/p/hirshfeld/ .
 run
 
 ```
+$ git clone https://github.com/lidaobing/hirshfeld.git
+$ sudo apt-get install cmake
 $ ./cofigure; make
 $ sudo make install
 ```

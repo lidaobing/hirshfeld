@@ -1,3 +1,7 @@
+## Version 0.2.5 (2017-08-25)
+
+* replace autotools with cmake.
+
 ## Version 0.2.4 (2013-06-05)
 
 * [#2] works with automake >= 0.11
