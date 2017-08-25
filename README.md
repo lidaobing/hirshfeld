@@ -32,7 +32,7 @@ run
 ```
 $ git clone https://github.com/lidaobing/hirshfeld.git
 $ sudo apt-get install cmake
-$ ./cofigure; make
+$ cd hirshfeld; cmake . && make
 $ sudo make install
 ```
 
