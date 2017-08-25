@@ -15,3 +15,17 @@ install-sh
 missing
 stamp-h1
 *.sw?
+
+CMakeCache.txt
+
+cmake_install.cmake
+
+CMakeFiles
+
+install_manifest.txt
+
+_CPack_Packages
+
+CPackConfig.cmake
+
+CPackSourceConfig.cmake
