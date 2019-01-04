@@ -1,6 +1,6 @@
 # hirshfeld
 
-[![Build Status](https://travis-ci.org/lidaobing/hirshfeld.png?branch=master)](https://travis-ci.org/lidaobing/hirshfeld)
+[![Build Status](https://travis-ci.org/lidaobing/hirshfeld.svg?branch=master)](https://travis-ci.org/lidaobing/hirshfeld)
 
 hirshfeld can help you calculate the hirshfeld charge from the
 gaussian's fchk file. hirshfeld charge is defined in
