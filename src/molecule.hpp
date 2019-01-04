@@ -6,6 +6,12 @@
 #include <iosfwd>
 
 namespace chemistry {
+  class Molecule;
+}
+
+std::ostream& operator<<(std::ostream&, const chemistry::Molecule&);
+
+namespace chemistry {
   class Atom;
   class Contraction; 
   class Molecule {
@@ -22,11 +28,11 @@ namespace chemistry {
     void read(std::istream& is);
     
     double density(double x, double y, double z) const;
-    friend std::ostream&
-    operator<<(std::ostream& os, const Molecule& mol);
     int atmnum() const;
     const chemistry::Atom& atom(int idx) const;
   private:
+    friend std::ostream& ::operator<<(std::ostream& os, const Molecule& mol);
+
     bool m_dirty;
     bool closeshell;
     std::vector<chemistry::Atom> m_atoms;
