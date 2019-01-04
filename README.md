@@ -72,7 +72,7 @@ $ /usr/local/lib/hirshfeld/convert 15.chk \
 ```
 
 The directory of the data file is followed by XDG Base Directory
-Specification[1](http://freedesktop.org/wiki/Specifications_2fbasedir_2dspec) (current version is 0.6). By default, you can put the
+Specification[1](https://freedesktop.org/wiki/Specifications/basedir-spec/) (current version is 0.6). By default, you can put the
 data file in one of these directories:
 
 * $HOME/.local/share/hirshfeld/
@@ -80,7 +80,7 @@ data file in one of these directories:
 * /usr/share/hirshfeld/
 
 it also influeced by the environment variable XDG_DATA_DIRS, if you need
-more information, check [1](http://freedesktop.org/wiki/Specifications_2fbasedir_2dspec).
+more information, check [1](https://freedesktop.org/wiki/Specifications/basedir-spec/).
 
 ## DEVELOPMENT VERSION
 
