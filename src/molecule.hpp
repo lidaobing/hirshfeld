@@ -23,7 +23,7 @@ namespace chemistry {
     
     double density(double x, double y, double z) const;
     friend std::ostream&
-    operator<<(std::ostream& os, const Molecule& mol);
+    ::operator<<(std::ostream& os, const Molecule& mol);
     int atmnum() const;
     const chemistry::Atom& atom(int idx) const;
   private:
