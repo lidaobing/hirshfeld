@@ -299,7 +299,7 @@ double Molecule::density(double x, double y, double z) const {
   return result;
 }
 
-ostream& chemistry::operator<<(ostream& os, const Molecule& mol) {
+ostream& operator<<(ostream& os, const Molecule& mol) {
   os << "Atomic Number          x               y               z\n";
   int atmnum = mol.m_atoms.size();
   for(int i = 0; i < atmnum; i++) {
