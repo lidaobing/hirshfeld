@@ -1,6 +1,3 @@
-include_directories("${PROJECT_BINARY_DIR}")
-include_directories("${PROJECT_SOURCE_DIR}/lib")
-
 add_executable (hirshfeld
 	atom.cpp
 	atomdata.cpp
@@ -13,7 +10,7 @@ add_executable (hirshfeld
 	molecule.cpp
 	slater.cpp
 	)
-
+target_include_directories(hirshfeld PRIVATE ${PROJECT_BINARY_DIR})
 install (TARGETS hirshfeld DESTINATION bin)
 
 add_executable (convert
@@ -28,5 +25,5 @@ add_executable (convert
 	molecule.cpp
 	slater.cpp
 	)
-
-install (TARGETS convert DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PACKAGE_NAME})
+target_include_directories(convert PRIVATE ${PROJECT_BINARY_DIR})
+install (TARGETS convert DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME})
