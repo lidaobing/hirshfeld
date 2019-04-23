@@ -5,7 +5,7 @@ os:
 compiler:
   - gcc
   - clang
-script: cmake . && make
+script: cmake . && cmake --build .
 dist: trusty
 sudo: false
 addons:
