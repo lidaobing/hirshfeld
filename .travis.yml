@@ -1,8 +1,11 @@
 language: cpp
+os:
+  - windows
+  - linux
 compiler:
   - gcc
   - clang
-script: cmake . && make
+script: cmake . && cmake --build .
 dist: trusty
 sudo: false
 addons:
